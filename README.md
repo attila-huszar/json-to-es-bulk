@@ -4,8 +4,8 @@ Simple utility that reads in a file (specified on the command line with `-f`) th
 contains an array of JSON data and outputs a new file with contents suitable
 as the request body for an Elasticsearch bulk request.
 
-The utility will create a file named `request-data.txt` in the output
-path specified.
+The utility will create a file named `data.txt` in the current directory or output
+path (specified with `-o`).
 
 ## Limitations
 
@@ -13,29 +13,17 @@ path specified.
 of the array in order to properly create the bulk request.
 - Only `index` operations are supported
 
-
 > The easy use-case for this tool is to use something like [JSON-Generator](http://www.json-generator.com/)
 to generate test data that can easily be converted to a bulk request.
 
 ## Usage
 
-### Getting started
+### Creating request data for an input file
 
- - Clone this repo
- - Run `npm install`
+Start with **npm start** and specify in prompts or
 
-
-### Creating request data for an input file:
-
-```
-node index.js -f inputdata.json --index test --type test
+```bash
+node index.js -f input.json -i test
 ```
 
-This will read `inputdata.json` from the current directory, and
-create a bulk request to the `test` index to the `test` mapping.
-
-### Using `curl` to index the request data:
-
-```
-curl -XPOST http://localhost:9200/_bulk @<path to output file>
-```
+This will read `input.json` from the current directory, and create a bulk request to the `test` index.
